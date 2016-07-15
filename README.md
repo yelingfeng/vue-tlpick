@@ -1,13 +1,17 @@
-<div align = center>
-	![](/vue.png)
-</div>
+
+<p align="center">
+  <a href="https://github.com/vuejs/vue">
+    <img src="/vue.png" width="200" height="200">
+  </a>
+</p>
+
 # vue-timelinepick
 
-> 一个时间轴选择组件
+> 涓�涓椂闂磋酱閫夋嫨缁勪欢
 
 
 ![](/view.png)
 
 
-## 开发中.....
+## 寮�鍙戜腑.....
 
