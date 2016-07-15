@@ -7,6 +7,14 @@
     "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --hot --port=3000"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yelingfeng/vue-timelinepick.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yelingfeng/vue-timelinepick/issues"
+  },
+  "homepage": "https://github.com/yelingfeng/vue-timelinepick#readme",
   "keywords": [
     "vue",
     "vuejs",
