@@ -1,0 +1,15 @@
+.v-timeline{
+     position:relative;  
+ }
+
+.vtime-type{
+    width: 100%;
+    text-align: left;
+}
+.vtime-type img{
+    margin-left: 25px;
+    margin-top: 5px;
+    width : 35px;
+    height : 30px;
+    cursor: pointer;
+}
