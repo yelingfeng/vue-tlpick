@@ -4,12 +4,12 @@
             <div class='col-md-6'>
                 <h1>{{ msg }}</h1>
                 <p>
-                    开始时间 : <span class="s1" v-text="startTime"></span> 
+                    开始时间 : <span class="s1" v-text="startTime"></span>
                 </p>
                 <p>
                      结束时间 : <span class='s1' v-text="endTime"></span>
                 </p>
-            </div>            
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -20,9 +20,9 @@
 </template>
 
 <script>
-    import timelinepick from "./components/vue-timelinepick.vue"
-    export default {
-        data() {
+
+export default {
+    data() {
         return {
             "msg": 'Vue timelinepick',
             "width": 1200,
@@ -33,7 +33,7 @@
                 "threshold": new Date(),
                 "number": 97,
                 "spanMinNumber": 10,
-                "isFixedDrag" : true, 
+                "isFixedDrag" : true,
                 "spanIndex": {start: 70, end: 97},
                 "type": "quarter",
                 "dateFormat" : 'yyyy-MM-dd mm:hh:ss'
@@ -44,7 +44,7 @@
         }
     },
     ready(){
-        var ww =$(window).width() 
+        var ww =$(window).width()
         this.boxStyle.width = ww +"px"
     },
     methods:{
@@ -52,9 +52,6 @@
             this.startTime = e.startTime;
             this.endTime = e.endTime;
         }
-    },
-    components :{
-        timelinepick
     }
     }
 </script>

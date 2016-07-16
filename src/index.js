@@ -1,4 +1,4 @@
-import timelinepick from "./components/vue-timelinepick.vue"
+import timelinepick from "./components/vue-timelinepick.js"
 
 
 function install (_Vue) {
@@ -11,5 +11,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  install 
+  install
 }

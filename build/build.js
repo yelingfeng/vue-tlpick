@@ -3,6 +3,7 @@ process.env.BABEL_ENV = 'production'
 
 
 var fs = require('fs');
+var zlib = require('zlib')
 var rollup = require('rollup');
 var uglify = require('uglify-js');
 var babel = require('rollup-plugin-babel');
@@ -17,11 +18,12 @@ var banner =
 
 rollup.rollup({
   entry: 'src/index.js',
+  sourceMap: true,
   plugins: [babel()]
 })
 .then(function (bundle) {
   var code = bundle.generate({
-    format: 'umd',
+    format: 'cjs',
     banner: banner,
     moduleName: 'VueTimelinepick'
   }).code
@@ -37,6 +39,17 @@ rollup.rollup({
     }
   }).code
   return write('dist/vue-timelinepick.min.js', minified)
+})
+.then(function () {
+  return new Promise(function (resolve, reject) {
+    fs.readFile('dist/vue-timelinepick.min.js', function (err, buf) {
+      if (err) return reject(err)
+      zlib.gzip(buf, function (err, buf) {
+        if (err) return reject(err)
+        write('dist/vue-timelinepick.min.js.gz', buf).then(resolve)
+      })
+    })
+  })
 })
 .catch(logError);
 

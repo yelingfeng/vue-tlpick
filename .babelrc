@@ -1,11 +1,12 @@
 {
   "env": {
     "development": {
-      "presets": ["es2015", "stage-2"]
+       "plugins": ["transform-decorators-legacy","add-module-exports","transform-runtime"],
+       "presets": ["es2015", "stage-2","stage-0"]
     },
     "production": {
-      "plugins": ['transform-runtime'], 
-      "presets": ["es2015-rollup"]
+       "plugins": ["transform-decorators-legacy","add-module-exports"],
+       "presets": ["es2015-rollup","stage-0"]
     }
   }
 }
