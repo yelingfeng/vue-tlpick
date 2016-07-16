@@ -7,11 +7,46 @@
 
 # vue-timelinepick
 
-> Ò»¸övueÊ±¼ä»¬¿éÑ¡Ôñ²å¼ş
+> ä¸€ä¸ªvueæ—¶é—´æ»‘å—é€‰æ‹©æ’ä»¶
 
 
 ![](/view.png)
 
 
-## ¿ª·¢ÖĞ.....
+## Examples
+
+```javascript```
+import Timelinepick from "./../dist/vue-timelinepick.min"
+import "./../dist/vue-timelinepick.css"
+
+Vue.use(Timelinepick)
+```
+
+vueç»„ä»¶ä¸­ç›´æ¥ä½¿ç”¨
+```javascript```
+
+  <timelinepick :option="op" :width="width" :height="height" :handler="changeAction"></timelinepick>
+  
+  data() {
+        return {
+            "width": 1200,
+            "height":110,
+            "op" : {
+                "threshold": new Date(),
+                "number": 97,
+                "spanMinNumber": 10,
+                "isFixedDrag" : true,
+                "spanIndex": {start: 70, end: 97},
+                "type": "quarter",
+                "dateFormat" : 'yyyy-MM-dd mm:hh:ss'
+            }
+        }
+    },
+  methods:{
+      changeAction(e){
+          this.startTime = e.startTime;
+          this.endTime = e.endTime;
+      }
+  }
+```
 
