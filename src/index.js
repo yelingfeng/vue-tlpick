@@ -1,4 +1,4 @@
-import timelinepick from "./src/components/vue-timelinepick.js"
+import timelinepick from "./components/vue-timelinepick.js"
 
 
 function install (_Vue) {

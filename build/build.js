@@ -15,7 +15,7 @@ var banner =
     " */\n";
 
 rollup.rollup({
-  entry: './index.js',
+  entry: './src/index.js',
   sourceMap: true,
   plugins: [babel({
     runtimeHelpers: true
