@@ -5,7 +5,7 @@
   </a>
 </p>
 
-# vue-timelinepick
+# Vue-Timelinepick
 
  时间范围选择插件 取当前时间之前一段时间范围  按刻，小时，天分类
 
@@ -24,9 +24,10 @@
 引入依赖文件
 ``` js
 
-import Timelinepick from "./../dist/vue-timelinepick.min"
-import "./../dist/vue-timelinepick.css"
-Vue.use(Timelinepick)
+import timelinepick from "vue-timelinepick"
+import "vue-timelinepick/dist/vue-timelinepick.css"
+
+Vue.use(timelinpick)
 
 ```
 
