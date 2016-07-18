@@ -638,7 +638,7 @@ export default class TimelinePick {
             var baseTime = me.nowTime.add('day', (1 - me.options.number));
             startTime = baseTime.add('day', me.options.spanIndex.start);
             endTime = baseTime.add('day', me.options.spanIndex.end - 1);
-            var _format = dateFormat == "yyyy-MM-dd hh:mm:ss" ? 'yyyy-MM-dd 00:00:00' : dateFormat;
+            var _format = "yyyy-MM-dd 00:00:00";
             return {
                 startTime: startTime.format(_format),
                 endTime: endTime.format(_format),
