@@ -21,6 +21,7 @@
 
 <script>
 
+import timelinepick from "./components/vue-timelinepick"
 export default {
     data() {
         return {
@@ -33,7 +34,7 @@ export default {
                 "threshold": new Date(),
                 "number": 97,
                 "spanMinNumber": 10,
-                "isFixedDrag" : true,
+                "isFixedDrag" : false,
                 "spanIndex": {start: 70, end: 97},
                 "type": "quarter",
                 "dateFormat" : 'yyyy-MM-dd mm:hh:ss'
@@ -52,8 +53,11 @@ export default {
             this.startTime = e.startTime;
             this.endTime = e.endTime;
         }
+    },
+    components:{
+        timelinepick
     }
-    }
+ }
 </script>
 
 <style>
@@ -76,7 +80,7 @@ export default {
     }
     .s1{
         font-size: 24px;
-        color :#229ed0;
+        color :rgb(255, 7, 7);
     }
 
 </style>

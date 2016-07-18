@@ -1,6 +1,4 @@
 
-process.env.BABEL_ENV = 'production'
-
 
 var fs = require('fs');
 var zlib = require('zlib')
@@ -17,9 +15,11 @@ var banner =
     " */\n";
 
 rollup.rollup({
-  entry: 'src/index.js',
+  entry: './index.js',
   sourceMap: true,
-  plugins: [babel()]
+  plugins: [babel({
+    runtimeHelpers: true
+  })]
 })
 .then(function (bundle) {
   var code = bundle.generate({

@@ -270,21 +270,21 @@ export default class TimelinePick {
     /**
      * 创建滑块
      */
-    _createSlider(width , height){
+    _createSlider(spanWidth , spanHeight){
         var me = this;
         var slider = new createjs.Shape();
         slider.alpha = 0.5;
        
         slider.drawColor = me.options.spanColor;
         slider.graphics.beginFill(slider.drawColor)
-                .drawRect(0, 0, width, height)
+                .drawRect(0, 0, spanWidth , spanHeight)
                 .endFill();
 
         slider.cursor = 'pointer';
         slider.on('mouseover', function () {
             this.graphics.clear();
             var hoverColor = d3.rgb(this.drawColor).brighter();
-            this.graphics.beginFill(hoverColor).drawRect(0, 0, width,height).endFill();
+            this.graphics.beginFill(hoverColor).drawRect(0, 0, spanWidth , spanHeight).endFill();
             this.shadow = new createjs.Shadow(hoverColor, 0, 0, 5);
         });
         slider.on('mouseout', function (e) {
@@ -292,7 +292,7 @@ export default class TimelinePick {
                 return;
             }
             this.graphics.clear();
-            this.graphics.beginFill(this.drawColor).drawRect(0, 0,width, height).endFill();
+            this.graphics.beginFill(this.drawColor).drawRect(0, 0,spanWidth , spanHeight).endFill();
             this.shadow = new createjs.Shadow(this.drawColor, 0, 0, 5);
             clearInterval(me.tempTimer);
             clearTimeout(me.tempInterval);
@@ -301,7 +301,7 @@ export default class TimelinePick {
             this.mousedownFlag = true;
             this.graphics.clear();
             var hoverColor = d3.rgb(this.drawColor).brighter();
-            this.graphics.beginFill(hoverColor).drawRect(0, 0,  width, height).endFill();
+            this.graphics.beginFill(hoverColor).drawRect(0, 0,  spanWidth , spanHeight).endFill();
             this.shadow = new createjs.Shadow(hoverColor, 0, 0, 5);
             this.mouseOffsetX = e.stageX - this.parent.x;
         })
@@ -337,24 +337,13 @@ export default class TimelinePick {
     /**
      * 创建滑块左右按钮
      */
-    _createSliderBtn(vector){
+    _createSliderBtn(size){
         var me = this;
-        var size = [7,22];
-        var flagleft = vector =="left" ? true :false;
         var button = new createjs.Shape();
         button.drawColor = me.buttonColor;
         button.graphics.beginFill(me.buttonColor).drawRect(5, 5, size[0] ,size[1]).endFill();
         button.shadow = new createjs.Shadow(me.buttonColor, 0, 0, 5);
         button.cursor = 'pointer';
-        button.set({
-            regX: me.spanDis / 2,
-            regY: 8
-        })
-        if(!flagleft){
-             button.set({
-                x : me.xScale(me.options.spanIndex.end - me.options.spanIndex.start - 1)
-             })
-        }
 
         return button;
     }
@@ -378,15 +367,25 @@ export default class TimelinePick {
         me.stageSpan.timeSpan = slider;
         me.stageSpan.addChild(slider);                            
       
-        var leftButton = me._createSliderBtn("left");
-        var rightButton = me._createSliderBtn("right");
+        var leftButton = me._createSliderBtn(size);
+        var rightButton = me._createSliderBtn(size);
       
         me.stageSpan.leftButton = leftButton;
         me.stageSpan.rightButton = rightButton;
         me.stageSpan.addChild(leftButton);
         me.stageSpan.addChild(rightButton);
-         
-        
+
+        leftButton.set({
+            regX: me.spanDis / 2,
+            regY: 8
+        })
+        rightButton.set({
+            regX: me.spanDis / 2,
+            regY: 8,
+            x: me.xScale(me.options.spanIndex.end - me.options.spanIndex.start - 1)
+        })
+
+
         leftButton.on('mouseover', function (e) {
             if(me.isFixedDrag())return ;
             this.graphics.clear();
@@ -431,7 +430,7 @@ export default class TimelinePick {
             var width = initWidth - this.deltaSpan;
             span.graphics.clear();
             rightButton.x = width;
-            span.graphics.beginFill(span.drawColor).drawRect(0, 0, size[0] ,size[1]).endFill();
+            span.graphics.beginFill(span.drawColor).drawRect(0, 0, width ,spanHeight).endFill();
             span.shadow = new createjs.Shadow(span.drawColor, 0, 0, 5);
             this.parent.set({
                 x: e.stageX - this.mouseOffsetX
@@ -491,7 +490,7 @@ export default class TimelinePick {
             var width = initWidth - this.deltaSpan;
             span.graphics.clear();
             this.x = width;
-            span.graphics.beginFill(span.drawColor).drawRect(0, 0,  size[0] ,size[1]).endFill();
+            span.graphics.beginFill(span.drawColor).drawRect(0, 0, width ,spanHeight).endFill();
             span.shadow = new createjs.Shadow(span.drawColor, 0, 0, 5);
            
         })
@@ -603,6 +602,7 @@ export default class TimelinePick {
     }
     refreshCaculate(){
         this.drawCore(this.options.type);
+        this.drawSlider();
         this.options.callback(this.caculateTimeSpan());
     }
     caculateTimeSpan(){

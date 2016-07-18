@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "description": "a timelinepick component for vuejs",
   "author": "yelingfeng <yelingfeng521@gmail.com>",
+  "main": "dist/vue-timelinepick.js",
   "scripts": {
     "build": "node build/build.js",
-    "dev": "webpack-dev-server --inline --hot --port=3000"
+    "dev": "webpack-dev-server --inline --hot --port=3000 --config webpack.config.dev.js",
+    "testdist": "rimraf exmaple && cross-env BABEL_ENV=production webpack --progress --hide-modules --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,10 @@
     "timeline"
   ],
   "license": "MIT",
+  "dependencies": {
+    "d3": "^3.5.12",
+    "jquery": "^2.2.4"
+  },
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
@@ -33,6 +39,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-preset-stage-2": "^6.0.0",
     "babel-runtime": "^6.9.2",
+    "bootstrap": "^3.3.6",
     "cross-env": "^1.0.6",
     "css-loader": "^0.23.0",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -41,6 +48,7 @@
     "image-webpack-loader": "^1.8.0",
     "json-loader": "^0.5.4",
     "replace-in-file": "^1.1.1",
+    "rimraf": "^2.5.3",
     "rollup": "^0.33.0",
     "rollup-plugin-babel": "^2.6.1",
     "style-loader": "^0.13.1",
@@ -54,10 +62,5 @@
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
-  },
-  "dependencies": {
-    "bootstrap": "^3.3.6",
-    "d3": "^3.5.12",
-    "jquery": "^2.2.4"
   }
 }

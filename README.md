@@ -7,14 +7,14 @@
 
 # vue-timelinepick
 
- 一个vue时间滑块选择插件
+ 时间范围选择插件 取当前时间之前一段时间范围  按刻，小时，天分类
 
 [demo地址](https://yelingfeng.github.io/vue-timelinepick/)
 
-![](/view.png)
+![](/pp.gif)
 
 ## dependencies
-> * jquery <=^2.x
+> * jquery <=2.x
 > * d3 < 4.x
 > * createjs
 > * tweenMax

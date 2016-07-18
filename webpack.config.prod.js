@@ -5,11 +5,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    vendor: ['vue','vuex'],
+    vendor: ['vue','d3'],
     bundle: './src/main'
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'exmaple'),
     filename: '[hash:8].[name].js'
   },
   plugins: [
@@ -25,12 +25,11 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
-      //filename:"vendor.js",
       minChunks: Infinity //Infinity
     }),
     new ExtractTextPlugin('[hash:8].style.css', { allChunks: true }),
     new HtmlWebpackPlugin({
-      title: "vuex-tutorial",
+      title: "vue-timelinepick",
       template: path.join(__dirname,'src/index.html'),  //模板文件
       inject:'body',
       hash:false,    //为静态资源生成hash值
@@ -47,33 +46,34 @@ module.exports = {
   ],
   module: {
     loaders: [
-    {
-      test: /\.vue$/,
-      loader: 'vue'
-    }, 
-    {
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: /node_modules|vue\/dist|vue-hot-reload-api|vue-router\/|vue-loader/
-    },
-    { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap' ) },
-    //{ test: /\.(css|scss)$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!sass-loader?sourceMap&includePaths[]=' + path.resolve(__dirname, "./node_modules/compass-mixins/lib") ) },
-    {
-      test: /\.(jpe?g|png|gif)$/i,
-      loaders: [
-        'url?limit=10000&name=images/[hash:8].[name].[ext]',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
-      ]
-    },{
-      test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'
-    }
-
+      {
+        test: /\.vue$/, loader: 'vue'
+      },
+      {
+        test: /\.js$/, loader: 'babel',
+        exclude: /node_modules|vue\/dist|vue-hot-reload-api|vue-router\/|vue-loader/
+      },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap' ) },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loaders: [
+          'url?limit=10000&name=images/[hash:8].[name].[ext]',
+          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+        ]
+      },{
+        test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'
+      }
     ]
+  },
+  vue: {
+    loaders: {
+      js: 'babel'
+    }
   },
   resolve: {
     root: path.resolve(__dirname, 'node_modules'),
-    extensions: ['','.js','.vue','.scss']
+    extensions: ['','.js','.vue','.css']
   }
 }
 

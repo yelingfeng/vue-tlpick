@@ -4,10 +4,10 @@ import Timelinepick from "./timelinepick"
 const template = `
   <div class="v-timeline" :style="wrapStyle">
       <div class="vtime-type">
-          <img :id="item" v-for="item in items" :src=" item | imgHander"
+          <div :id="item" v-for="item in items"
                 @click = "typeClick(item,$event)"
                 @mouseover="typeMover(item,$event)"
-                @mouseout="typeMout(item,$event)" />
+                @mouseout="typeMout(item,$event)"></div>
       </div>
       <div class="vtimeContainer" >
       </div>
@@ -81,7 +81,8 @@ export default class VueTimelinepick {
       this.itemMagicHover(e.target)
       this.itemMagicOver(this.$el.querySelector("#"+this.activeType))
       this.activeType = vtype;
-      this.timelinepick.setType(vtype)
+      this.timelinepick.setType(vtype);
+      this.handler(this.timelinepick.caculateTimeSpan())
   }
   itemMagicHover(target){
       TweenMax.to(target, 0.2, {alpha : 1, scaleX : 1.5, scaleY : 1.5});
