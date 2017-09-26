@@ -27,7 +27,7 @@
 import timelinepick from "vue-timelinepick"
 import "vue-timelinepick/dist/vue-timelinepick.css"
 
-Vue.use(timelinpick)
+Vue.use(timelinepick)
 
 ```
 
