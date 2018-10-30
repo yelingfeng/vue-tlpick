@@ -1,4 +1,0 @@
-{
-   "plugins": ["transform-decorators-legacy","add-module-exports","transform-runtime"],
-   "presets": ["es2015-rollup","es2015", "stage-0"]
-}
