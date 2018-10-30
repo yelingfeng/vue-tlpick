@@ -5,7 +5,7 @@
 
 >  依赖`d3` ,`TweenMax`
 
-[demo地址](https://yelingfeng.github.io/vue-timelinepick/)
+[https://yelingfeng.github.io/vue-tlpick/](https://yelingfeng.github.io/vue-tlpick/)
 
 ## 下载安装
 
