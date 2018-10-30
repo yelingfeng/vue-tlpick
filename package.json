@@ -1,21 +1,22 @@
 {
   "name": "vue-tlpick",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a timelinepick component for vuejs",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --name vue-tlpick ./src/index.js --target lib --dest lib",
     "lint": "vue-cli-service lint"
   },
+  "main": "lib/vue-tlpick.umd.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yelingfeng/vue-timelinepick.git"
+    "url": "git+https://github.com/yelingfeng/vue-tlpick.git"
   },
   "bugs": {
-    "url": "https://github.com/yelingfeng/vue-timelinepick/issues"
+    "url": "https://github.com/yelingfeng/vue-tlpick/issues"
   },
-  "homepage": "https://github.com/yelingfeng/vue-timelinepick#readme",
+  "homepage": "https://github.com/yelingfeng/vue-tlpick#readme",
   "keywords": [
     "vue",
     "vuejs",
@@ -23,7 +24,6 @@
   ],
   "dependencies": {
     "d3": "3",
-    "jquery": "3",
     "vue": "^2.5.17"
   },
   "devDependencies": {

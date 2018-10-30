@@ -16,18 +16,18 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <timelinepick :option="op" :width="width" :height="height" @change="changeAction"></timelinepick>
+                <tlpick :option="op" :width="width" :height="height" @change="changeAction"></tlpick>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import timelinepick from "./components/tlpick.vue"
+import tlpick from "./components/tlpick.vue"
 export default {
     data() {
         return {
-            "msg": 'Vue timelinepick',
+            "msg": 'Vue tlpick',
             "width": 1200,
             "height":110,
             "startTime":"",
@@ -47,7 +47,7 @@ export default {
             }
         }
     },
-    ready(){
+    mounted(){
         var ww =$(window).width()
         this.boxStyle.width = ww +"px"
     },
@@ -59,7 +59,7 @@ export default {
         }
     },
     components:{
-        timelinepick
+        tlpick
     }
  }
 </script>
@@ -73,9 +73,6 @@ body {
    -moz-osx-font-smoothing: grayscale;
 }
 
-.container{
- margin: 10px auto;
-}
 h1{
    color:#fff !important;
    font-size: 24px;
