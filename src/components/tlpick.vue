@@ -1,7 +1,7 @@
 <template>
     <div class="v-timeline" :style="wrapStyle">
         <div class="vtime-type">
-            <img :id="item" v-for="item in items" :src=" item | imgHander"
+            <div class="vtime-icon":id="item" v-for="item in items"
                   @click = "typeClick(item,$event)"
                   @mouseover="typeMover(item,$event)"
                   @mouseout="typeMout(item,$event)" />
@@ -11,7 +11,7 @@
     </div>
 </template>
 <script>
-import Timelinepick from "./timelinepick"
+import Timelinepick from "./tlpick.js"
 export default {
     props:{
         option:{
@@ -31,9 +31,6 @@ export default {
             type :Number,
             required: false,
             default:100
-        },
-        handler:{
-            required: false
         }
     },
     data(){
@@ -46,11 +43,15 @@ export default {
             }
         }
     },
-    ready(){
+    mounted(){
          this.itemMagicHover(this.$el.querySelector("#"+this.activeType))
          this.option.el = this.$el.querySelector(".vtimeContainer");
          this.option.parent = this.option.el.parentNode ;
-         this.option.callback = this.handler;
+         const me = this;
+         this.option.callback = (e)=>{
+             console.log(e)
+             me.$emit('change',e)
+         }
          this.wrapStyle.width =  this.width +"px" ;
          this.timelinepick = new Timelinepick(this.option)
     },
@@ -61,6 +62,7 @@ export default {
             this.itemMagicOver(this.$el.querySelector("#"+this.activeType))
             this.activeType = vtype;
             this.timelinepick.setType(vtype)
+            this.$emit('change',this.timelinepick.caculateTimeSpan())
         },
         itemMagicHover(target){
             TweenMax.to(target, 0.2, {alpha : 1, scaleX : 1.5, scaleY : 1.5});
@@ -75,33 +77,19 @@ export default {
             if(e.target.id == this.activeType)return
             this.itemMagicOver(e.target)
         }
-    },
-    filters:{
-        imgHander(item){
-            var url = "src/images/"
-            if(item == "quarter") {
-                url += "15w"
-            }else if(item == "hour") {
-                url += "60w"
-            }else {
-                url += "24w"
-            }
-            url +=".png"
-            return url;
-        }
     }
 }
 </script>
 
 <style scoped>
 .v-timeline{
-   }
+}
 
 .vtime-type{
     width: 100%;
     text-align: left;
 }
-.vtime-type img{
+.vtime-icon{
     margin-left: 25px;
     margin-top: 5px;
     width : 35px;

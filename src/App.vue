@@ -1,35 +1,38 @@
-﻿<template>
+<template>
     <div class="container" :style="boxStyle">
         <div class="row">
-            <div class='col-md-6'>
+            <div class='col-md-12'>
                 <h1>{{ msg }}</h1>
                 <p>
                     开始时间 : <span class="s1" v-text="startTime"></span>
                 </p>
                 <p>
-                     结束时间 : <span class='s1' v-text="endTime"></span>
+                    结束时间 : <span class='s1' v-text="endTime"></span>
+                </p>
+                <p>
+                    时间类型 : <span class='s1' v-text="type"></span>
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <timelinepick :option="op" :width="width" :height="height" :handler="changeAction"></timelinepick>
+                <tlpick :option="op" :width="width" :height="height" @change="changeAction"></tlpick>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
-import timelinepick from "./components/vue-timelinepick"
+import tlpick from "./components/tlpick.vue"
 export default {
     data() {
         return {
-            "msg": 'Vue timelinepick',
+            "msg": 'Vue tlpick',
             "width": 1200,
             "height":110,
             "startTime":"",
             "endTime":"",
+            "type":"",
             "op" : {
                 "threshold": new Date(),
                 "number": 97,
@@ -44,7 +47,7 @@ export default {
             }
         }
     },
-    ready(){
+    mounted(){
         var ww =$(window).width()
         this.boxStyle.width = ww +"px"
     },
@@ -52,35 +55,34 @@ export default {
         changeAction(e){
             this.startTime = e.startTime;
             this.endTime = e.endTime;
+            this.type = e.timeType;
         }
     },
     components:{
-        timelinepick
+        tlpick
     }
  }
 </script>
 
 <style>
-    body {
-        font-family: Helvetica, sans-serif;
-        background-color: #04255a ;
-        overflow:hidden;
-    }
-    .container{
-      margin: 10px auto;
-    }
-    h1{
-        color:#fff;
-        font-size: 24px;
-    }
-    p{
-       color : #fff;
-       font-size:14px;
-       font-family:"微软雅黑"
-    }
-    .s1{
-        font-size: 24px;
-        color :rgb(255, 7, 7);
-    }
+body {
+   font-family: Helvetica, sans-serif;
+   background-color: #04255a !important;
+   overflow:hidden;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
 
+h1{
+   color:#fff !important;
+   font-size: 24px;
+}
+p{
+  color : #fff;
+  font-size:14px;
+  font-family:"微软雅黑"
+}
+.s1{
+    color :red;
+}
 </style>

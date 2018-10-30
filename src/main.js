@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
-import "./components/vue-timelinepick.css"
-import $ from "jquery"
+import Vue from 'vue';
+import App from './App.vue';
+import '@/components/tlpick.css'
+import '@/lib/createjs'
+import '@/lib/TweenMax'
 import 'bootstrap/dist/css/bootstrap.css'
-import "bootstrap/dist/js/bootstrap.min"
+import 'bootstrap/dist/js/bootstrap.min'
+Vue.config.productionTip = false;
 
 new Vue({
-  el: 'body',
-  components: { App }
-})
+    render: h => h(App)
+}).$mount('#app');

@@ -1,8 +1,8 @@
-import timelinepick from "./components/vue-timelinepick.js"
+import tlpick from './components/tlpick.js'
 
 
-function install (_Vue) {
-    _Vue.component("timelinepick", timelinepick)
+function install(_Vue) {
+    _Vue.component('tlpick', tlpick)
 }
 
 

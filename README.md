@@ -1,39 +1,37 @@
+# Vue-tlpick
+> 更新最新`vue-cli`和`vue` 最新版
 
-<p align="center">
-  <a href="https://github.com/vuejs/vue">
-    <img src="/vue.png" width="200" height="200">
-  </a>
-</p>
+基于creatjs开发的 时间范围内的选择时间轴， 取当前时间之前一段时间范围  按刻，小时，天分类。
 
-# Vue-Timelinepick
-
- 时间范围选择插件 取当前时间之前一段时间范围  按刻，小时，天分类
+>  依赖`d3` ,`TweenMax`
 
 [demo地址](https://yelingfeng.github.io/vue-timelinepick/)
 
-![](/pp.gif)
+## 下载安装
 
-## dependencies
-> * jquery <=2.x
-> * d3 < 4.x
-> * createjs
-> * tweenMax
+```js
 
-## Examples
+  npm install vue-tlpick  
+
+```
+
+
+## 插件使用
+
 
 引入依赖文件
 ``` js
-
-import timelinepick from "vue-timelinepick"
-import "vue-timelinepick/dist/vue-timelinepick.css"
-
-Vue.use(timelinepick)
+import "vue-tlpick/src/createjs"
+import "vue-tlpick/src/TweenMax"
+import "vue-tlpick/lib/vue-tlpick.css"
+import tlpick from "vue-tlpick"
+Vue.use(tlpick)
 
 ```
 
 vue组件中直接使用
 ``` js
-<timelinepick :option="op" :width="width" :height="height" :handler="changeAction"></timelinepick>
+<tlpick :option="op" :width="width" :height="height" :change="changeAction"></tlpick>
 
 data() {
       return {
@@ -58,17 +56,42 @@ methods:{
 }
 ```
 ## props
-| 属性        | 说明         | 
+| 属性        | 说明         |
 | -------------: |:-------------|
 | width       | 宽   |
 | height      | 高      |  
 | option      | 配置项  |  
+|  change |事件  |
 ### options
-| 属性        | 说明         | 
+| 属性        | 说明         |
 | -------------: |:-------------|
 | threshold      | 起点时间（默认当前） new Date()   |
 | number         |  总刻度   97  |  
 | isFixedDrag    |   是否禁止拖拽 false |  
-| spanIndex    |   起始滑块范围   {start: 70, end: 97}| 
-| type    |   刻度类型  "quarter" | 
+| spanIndex    |   起始滑块范围   {start: 70, end: 97}|
+| type    |   刻度类型  "quarter" |
 | dateFormat | 格式 'yyyy-MM-dd mm:hh:ss'|
+
+
+
+
+
+## 二次开发
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn run serve
+```
+
+### Compiles and minifies for production
+```
+yarn run build
+```
+
+### Lints and fixes files
+```
+yarn run lint
+```
